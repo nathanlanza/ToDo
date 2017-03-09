@@ -1,6 +1,6 @@
 import Foundation
 
-struct ToDoItem {
+struct ToDoItem: Equatable {
     let title: String
     let itemDescription: String?
     let timestamp: Double?
@@ -11,5 +11,12 @@ struct ToDoItem {
         self.itemDescription = itemDescription
         self.timestamp = timestamp
         self.location = location
+    }
+    
+    public static func ==(lhs: ToDoItem, rhs: ToDoItem) -> Bool {
+        return lhs.location == rhs.location &&
+            lhs.timestamp == rhs.timestamp &&
+            lhs.itemDescription == rhs.itemDescription &&
+            lhs.title == rhs.title
     }
 }

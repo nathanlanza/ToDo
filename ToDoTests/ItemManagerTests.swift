@@ -28,4 +28,61 @@ class ItemManagerTests: XCTestCase {
         sut.add(ToDoItem(title: ""))
         XCTAssertEqual(sut.toDoCount, 1)
     }
+    
+    func test_ItemAt_AfterAddingANItem_ReturnsThatItem() {
+        let item = ToDoItem(title: "")
+        sut.add(item)
+        
+        let returnedItem = sut.item(at: 0)
+        XCTAssertEqual(returnedItem, item)
+    }
+    
+    func test_CheckItemAt_ChangesCounts() {
+        sut.add(ToDoItem(title: ""))
+        sut.checkItem(at: 0)
+        XCTAssertEqual(sut.toDoCount, 0)
+        XCTAssertEqual(sut.doneCount, 1)
+    }
+    
+    func test_CheckItemAt_RemovesItFromToDoItems() {
+        let first = ToDoItem(title: "First")
+        let second = ToDoItem(title: "Second")
+        sut.add(first)
+        sut.add(second)
+        
+        sut.checkItem(at: 0)
+        
+        XCTAssertEqual(sut.item(at: 0), second)
+    }
+    
+    func test_DoneItemAt_ReturnsCheckedItem() {
+        let item = ToDoItem(title: "Foo")
+        sut.add(item)
+        
+        sut.checkItem(at: 0)
+        let returnedItem = sut.doneItem(at: 0)
+        
+        XCTAssertEqual(returnedItem, item)
+    }
+    
+    func test_RemoveAll_ResultsInCountsBeZero() {
+        sut.add(ToDoItem(title: "Foo"))
+        sut.add(ToDoItem(title: "Bar"))
+        sut.checkItem(at: 0)
+        
+        XCTAssertEqual(sut.toDoCount, 1)
+        XCTAssertEqual(sut.doneCount, 1)
+        
+        sut.removeAll()
+        
+        XCTAssertEqual(sut.toDoCount, 0)
+        XCTAssertEqual(sut.doneCount, 0)
+    }
+    
+    func test_Add_WhenItemIsAlreadyAdded_DoesNotIncreaseCount() {
+        sut.add(ToDoItem(title: "Foo"))
+        sut.add(ToDoItem(title: "Foo"))
+        
+        XCTAssertEqual(sut.toDoCount, 1)
+    }
 }
