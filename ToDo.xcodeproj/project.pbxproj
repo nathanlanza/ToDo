@@ -26,6 +26,7 @@
 		B3615DB91E75EDD7005E0E58 /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3615DB81E75EDD7005E0E58 /* ItemListDataProvider.swift */; };
 		B3615DBB1E75F008005E0E58 /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3615DBA1E75F008005E0E58 /* ItemListDataProviderTests.swift */; };
 		B3615DBD1E7610FD005E0E58 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3615DBC1E7610FD005E0E58 /* ItemCell.swift */; };
+		B391DE461E81D71B00287478 /* StoryboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B391DE451E81D71B00287478 /* StoryboardTests.swift */; };
 		B3D49F4D1E7E39E4005CCBE5 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D49F4C1E7E39E4005CCBE5 /* APIClientTests.swift */; };
 		B3D49F4F1E7E3A33005CCBE5 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D49F4E1E7E3A33005CCBE5 /* APIClient.swift */; };
 		B3D49F511E7E3C5F005CCBE5 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D49F501E7E3C5F005CCBE5 /* Token.swift */; };
@@ -66,6 +67,7 @@
 		B3615DB81E75EDD7005E0E58 /* ItemListDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 		B3615DBA1E75F008005E0E58 /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
 		B3615DBC1E7610FD005E0E58 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		B391DE451E81D71B00287478 /* StoryboardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardTests.swift; sourceTree = "<group>"; };
 		B3D49F4C1E7E39E4005CCBE5 /* APIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
 		B3D49F4E1E7E3A33005CCBE5 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		B3D49F501E7E3C5F005CCBE5 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				B370C7CB1E75E474004CAD5D /* Model */,
 				B3FBFEA41E75E6C300642156 /* Controller */,
 				B370C7CC1E75E479004CAD5D /* Other */,
+				B391DE451E81D71B00287478 /* StoryboardTests.swift */,
 			);
 			path = ToDoTests;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				B328A4111E793E9A00EC7D57 /* InputViewControllerTests.swift in Sources */,
 				B31280D71E70ECD400033D1C /* LocationTests.swift in Sources */,
 				B328A40F1E7939EF00EC7D57 /* DetailViewControllerTests.swift in Sources */,
+				B391DE461E81D71B00287478 /* StoryboardTests.swift in Sources */,
 				B3D49F4D1E7E39E4005CCBE5 /* APIClientTests.swift in Sources */,
 				B3FBFEA31E75E6AB00642156 /* ItemListViewControllerTest.swift in Sources */,
 				B31280D01E70E90400033D1C /* ToDoItemTests.swift in Sources */,

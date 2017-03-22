@@ -90,6 +90,19 @@ class InputViewControllerTests: XCTestCase {
         waitForExpectations(timeout: 3, handler: nil)
     }
     
+    func test_Save_DismissesViewController() {
+        let mockInputViewController = MockInputViewController()
+        mockInputViewController.titleTextField = UITextField()
+        mockInputViewController.dateTextField = UITextField()
+        mockInputViewController.locationTextField = UITextField()
+        mockInputViewController.addressTextField = UITextField()
+        mockInputViewController.descriptionTextField = UITextField()
+        mockInputViewController.titleTextField.text = "Test Title"
+        mockInputViewController.save()
+        
+        XCTAssertTrue(mockInputViewController.dismissGotCalled)
+    }
+    
 }
 
 fileprivate let dateFormatter: DateFormatter = {
@@ -113,6 +126,12 @@ extension InputViewControllerTests {
         override var location: CLLocation? {
             guard let coordinate = mockCoordinate else { return CLLocation() }
             return CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        }
+    }
+    class MockInputViewController: InputViewController {
+        var dismissGotCalled = false
+        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+            dismissGotCalled = true
         }
     }
 }

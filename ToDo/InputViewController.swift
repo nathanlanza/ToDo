@@ -9,7 +9,7 @@ class InputViewController: UIViewController {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-   
+    
     lazy var geocoder = CLGeocoder()
     var itemManager: ItemManager?
     
@@ -22,17 +22,19 @@ class InputViewController: UIViewController {
             date = nil
         }
         let descriptionString = descriptionTextField.text
-        if let locationName = locationTextField.text, locationName.characters.count > 0 {
-            if let address = addressTextField.text, address.characters.count > 0 {
-                geocoder.geocodeAddressString(address) { [unowned self] (placeMarks, error) in
-                    
-                    let placeMark = placeMarks?.first
-                    
-                    let item = ToDoItem(title: titleString, itemDescription: descriptionString, timestamp: date?.timeIntervalSince1970, location: Location(name: locationName, coordinate: placeMark?.location?.coordinate))
-                    self.itemManager?.add(item)
-                }
+        if let locationName = locationTextField.text, locationName.characters.count > 0, let address = addressTextField.text, address.characters.count > 0 {
+            geocoder.geocodeAddressString(address) { [unowned self] (placeMarks, error) in
+                
+                let placeMark = placeMarks?.first
+                
+                let item = ToDoItem(title: titleString, itemDescription: descriptionString, timestamp: date?.timeIntervalSince1970, location: Location(name: locationName, coordinate: placeMark?.location?.coordinate))
+                self.itemManager?.add(item)
+                self.dismiss(animated: true)
             }
+        } else {
+            dismiss(animated: true)
         }
+        
     }
 }
 
