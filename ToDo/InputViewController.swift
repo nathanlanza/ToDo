@@ -28,10 +28,15 @@ class InputViewController: UIViewController {
                 let placeMark = placeMarks?.first
                 
                 let item = ToDoItem(title: titleString, itemDescription: descriptionString, timestamp: date?.timeIntervalSince1970, location: Location(name: locationName, coordinate: placeMark?.location?.coordinate))
-                self.itemManager?.add(item)
-                self.dismiss(animated: true)
+                
+                DispatchQueue.main.async {
+                    self.itemManager?.add(item)
+                    self.dismiss(animated: true)
+                }
             }
         } else {
+            let item = ToDoItem(title: titleString, itemDescription: descriptionString, timestamp: date?.timeIntervalSince1970, location: nil)
+            self.itemManager?.add(item)
             dismiss(animated: true)
         }
         

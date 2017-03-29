@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let itemInfo = itemInfo else { return }
+        guard let itemInfo = itemInfo else { fatalError() }
         let item = itemInfo.0.item(at: itemInfo.1)
         titleLabel.text = item.title
         locationLabel.text = item.location?.name

@@ -46,6 +46,14 @@ class LocationTests: XCTestCase {
     func test_Locations_WhenNamesDiffer_AreNotEqual() {
         performNotEqualTestWith(firstName: "Foo", secondName: "Bar")
     }
+    
+    func test_CanBeSerializedAndDeserialized() {
+        let location = Location(name: "Home", coordinate: CLLocationCoordinate2D(latitude: 50, longitude: 60))
+        let dict = location.plistDict
+        XCTAssertNotNil(dict)
+        let recreatedLocation = Location(dict: dict)
+        XCTAssertEqual(location, recreatedLocation)
+    }
 }
 
 extension LocationTests {

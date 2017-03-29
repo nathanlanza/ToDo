@@ -77,6 +77,20 @@ extension ItemListDataProvider: UITableViewDataSource {
         }
         tableView.reloadData()
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let itemSection = Section(rawValue: indexPath.section) else { fatalError() }
+        
+        switch itemSection {
+        case .toDo:
+            NotificationCenter.default.post(name: .itemSelected, object: self, userInfo: ["index": indexPath.row])
+        default:
+            break
+        }
+    }
+}
+
+extension Notification.Name {
+    static var itemSelected: Notification.Name { return Notification.Name("ItemSelectedNotification") }
 }
 
 extension ItemListDataProvider: UITableViewDelegate {

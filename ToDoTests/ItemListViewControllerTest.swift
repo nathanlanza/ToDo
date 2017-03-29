@@ -14,7 +14,7 @@ class ItemListViewControllerTest: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut.itemManager.removeAll()
         super.tearDown()
     }
 
@@ -42,6 +42,34 @@ class ItemListViewControllerTest: XCTestCase {
         
         XCTAssert(mockTableView.didReload)
     }
+    
+    func test_ItemSelectedNotification_PushesDetailVC() {
+        let mockNavigationController = MockNavigationController(rootViewController: sut)
+        
+        UIApplication.shared.keyWindow?.rootViewController = mockNavigationController
+        _ = sut.view
+        
+        NotificationCenter.default.post(name: .itemSelected, object: self, userInfo: ["index":1])
+        
+        guard let detailViewController = mockNavigationController.pushedViewController as? DetailViewController else {
+            XCTFail()
+            return
+        }
+        guard let detailItemManager = detailViewController.itemInfo?.0 else {
+            XCTFail()
+            return
+        }
+        guard let index = detailViewController.itemInfo?.1 else {
+            XCTFail()
+            return
+        }
+        
+        _ = detailViewController.view
+        
+        XCTAssertNotNil(detailViewController.titleLabel)
+        XCTAssertTrue(detailItemManager === sut.itemManager)
+        XCTAssertEqual(index, 1)
+    }
 }
 
 extension ItemListViewControllerTest {
@@ -50,5 +78,18 @@ extension ItemListViewControllerTest {
         override func reloadData() {
             didReload = true
         }
+    }
+}
+
+extension ItemListViewControllerTest {
+    class MockNavigationController: UINavigationController {
+        var pushedViewController: UIViewController?
+        
+        
+        override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+            pushedViewController = viewController
+            super.pushViewController(viewController, animated: animated)
+        }
+        
     }
 }

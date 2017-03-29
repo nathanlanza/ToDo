@@ -39,7 +39,7 @@ class ItemListDataProviderTests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut.itemManager?.removeAll()
         super.tearDown()
     }
     
@@ -151,6 +151,20 @@ class ItemListDataProviderTests: XCTestCase {
         XCTAssertEqual(sut.itemManager?.doneCount, 0)
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
         XCTAssertEqual(tableView.numberOfRows(inSection: 1), 0)
+    }
+    
+    func test_SelectingACell_SendsNotification() {
+        let item = ToDoItem(title: "First")
+        sut.itemManager?.add(item)
+        
+        expectation(forNotification: "ItemSelectedNotification", object: nil) { notification in
+            guard let index = notification.userInfo?["index"] as? Int else { return false }
+            return index == 0
+        }
+        
+        tableView.delegate!.tableView!(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        
+        waitForExpectations(timeout: 3, handler: nil)
     }
 }
 
